@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name="robots" content="noindex,nofollow">
+    <title>UberCheapEats Deals near Grand Central Station</title>
+    <link rel="stylesheet" href="/assets/main.css" />
+    {% if environment == "production" %}
+    <script type="text/javascript">
+        (function (window, document, dataLayerName, id) {
+            window[dataLayerName] = window[dataLayerName] || [], window[dataLayerName].push({ start: (new Date).getTime(), event: "stg.start" }); var scripts = document.getElementsByTagName('script')[0], tags = document.createElement('script');
+            var qP = []; dataLayerName !== "dataLayer" && qP.push("data_layer_name=" + dataLayerName); var qPString = qP.length > 0 ? ("?" + qP.join("&")) : "";
+            tags.async = !0, tags.src = "https://j8nn3str.containers.piwik.pro/" + id + ".js" + qPString, scripts.parentNode.insertBefore(tags, scripts);
+            !function (a, n, i) { a[n] = a[n] || {}; for (var c = 0; c < i.length; c++)!function (i) { a[n][i] = a[n][i] || {}, a[n][i].api = a[n][i].api || function () { var a = [].slice.call(arguments, 0); "string" == typeof a[0] && window[dataLayerName].push({ event: n + "." + i + ":" + a[0], parameters: [].slice.call(arguments, 1) }) } }(i[c]) }(window, "ppms", ["tm", "cm"]);
+        })(window, document, 'dataLayer', '5cda5821-5411-482b-a496-a463f4e057db');
+    </script>
+    {% endif %}
+</head>
+
+<body>
+    <div class="bg-uber-eats-light-green jumbotron d-flex align-items-center justify-content-center text-center"
+        style=" height: 30vh;">
+        <div>
+            <h1 class="display-6 fw-bold ">UberEats Bogo Deals near Grand Central Station</h1>
+            <p class="lead">
+                Deals refresh <span class="fw-bold">hourly on weekdays from 10am to 2pm ET</span>. Last refreshed <span class="fw-bold" id="timeDifference">Calculating...</span>.
+                <span id="buildDate" data-build-date="{{ buildDateISO }}" style="display: none;">{{ buildDateFormatted
+                    }}</span>
+            </p>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const buildDateElement = document.getElementById('buildDate');
+                    const timeDifferenceElement = document.getElementById('timeDifference');
+
+                    // Get the build date from the data attribute
+                    const buildDate = new Date(buildDateElement.getAttribute('data-build-date'));
+
+                    function updateTimeDifference() {
+                        const now = new Date();
+                        const diffMs = now - buildDate; // Difference in milliseconds
+
+                        // Ensure the buildDate is valid
+                        if (isNaN(buildDate.getTime())) {
+                            timeDifferenceElement.textContent = "Invalid build date";
+                            return;
+                        }
+
+                        // Calculate hours and minutes
+                        const hours = Math.floor(diffMs / (1000 * 60 * 60));
+                        const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+
+                        // Build the time difference string
+                        let timeString = "";
+                        if (hours > 0) {
+                            timeString += `${hours} hour${hours > 1 ? "s" : ""}`;
+                        }
+                        if (minutes > 0) {
+                            timeString += (timeString ? " and " : "") + `${minutes} minute${minutes > 1 ? "s" : ""}`;
+                        }
+                        if (!hours && !minutes) {
+                            timeString = "less than a minute";
+                        }
+
+                        // Update the time difference element
+                        timeDifferenceElement.textContent = `${timeString} ago`;
+                    }
+
+                    // Update the time difference every minute
+                    updateTimeDifference();
+                    setInterval(updateTimeDifference, 60000); // Update every 60 seconds
+                });
+            </script>
+        </div>
+    </div>
+
+    {% for restaurant in deals %}
+    <div class="card m-3">
+        <div class="card-header">
+            <h2 class="fs-5"><a class="text-decoration-none text-reset" href="{{ restaurant.@id}}" target="_blank">{{
+                    restaurant.name | safe }} <i class="fs-6 text fa-solid fa-arrow-up-right-from-square"></i></a></h2>
+            <p><i class="fa-solid fa-location-dot"></i> {{ restaurant.address.streetAddress }}, {{
+                restaurant.address.addressLocality }}, {{ restaurant.address.addressRegion }}</p>
+        </div>
+        <div class="card-body">
+
+
+            <div class="row g-3 d-flex">
+                {% for deal in restaurant.deals %}
+                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                    <div class="card flex-fill">
+                        <img src="{{ deal.imageUrl }}" class="deal-image card-img-top" alt="..."
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x400?text=No%20image%20provided.';">
+                        <div class="card-body">
+                            <h3 class="fw-bold fs-6">{{ deal.title }}</h3>
+                            <span>{{ deal.priceTagline.text }}</span>
+                            <p>{{ deal.itemDescription | truncate(50) }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+    <script src="/assets/main.js"></script>
+</body>
+
+</html>

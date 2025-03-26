@@ -1,0 +1,5 @@
+node_modules
+.cache
+public
+.parcel-cache
+src/_data/deals.json

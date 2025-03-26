@@ -1,0 +1,24 @@
+// Bootstrap Overrides
+@import "./base/bootstrap_overrides.module";
+
+// Bootstrap
+@import "./vendor/bootstrap";
+
+.deal-image {
+    width: 100%; /* Ensures the image takes up the full width of the card */
+    height: 150px; /* Sets a consistent height for all images */
+    object-fit: cover; /* Ensures the image is cropped to fit the dimensions without distortion */
+    border-radius: 5px; /* Optional: Adds rounded corners to match Bootstrap's card style */
+}
+
+.bg-uber-eats-green {
+    background-color: $ubereats-green;
+}
+
+.bg-uber-eats-dark-green {
+    background-color: $ubereats-dark-green;
+}
+
+.bg-uber-eats-light-green {
+    background-color: $ubereats-light-green;
+}

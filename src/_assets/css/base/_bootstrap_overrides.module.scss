@@ -1,0 +1,76 @@
+// UberEats Themed Colors
+
+$theme: "ubereats" !default;
+
+//
+// Color system
+//
+
+$white:    #fff !default;
+$black:    #000 !default;
+
+// UberEats Colors
+$ubereats-green:   #00C853 !default; // UberEats Green
+$ubereats-dark-green: #388E3C !default; // Dark Green for secondary or borders
+$ubereats-light-green: #A5D6A7 !default; // Lighter Green for accents
+$ubereats-dark:    #212121 !default; // Darker background color (mostly for text contrast)
+
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #868e96 !default;
+$gray-700: #495057 !default;
+$gray-800: #373a3c !default;
+$gray-900: #212529 !default;
+
+// Standard Colors
+$blue:    #2780e3 !default;
+$indigo:  #6610f2 !default;
+$purple:  #613d7c !default;
+$pink:    #e83e8c !default;
+$red:     #ff0039 !default;
+$orange:  #f0ad4e !default;
+$yellow:  #ff7518 !default;
+$green:   $ubereats-green !default;
+$teal:    #20c997 !default;
+$cyan:    #9954bb !default;
+
+$primary:       $ubereats-green !default; // Primary UberEats Green
+$secondary:     $ubereats-dark-green !default; // Secondary Dark Green
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $ubereats-dark !default; // Dark background/text color
+
+$min-contrast-ratio:   2.6 !default;
+
+// Options
+
+$enable-rounded: false !default;
+
+// Body
+
+$body-color:    $ubereats-dark !default; // Body text color for contrast
+
+// Fonts
+
+// stylelint-disable-next-line value-keyword-case
+$font-family-sans-serif:    "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$headings-font-weight:      400 !default;
+
+// Navbar
+
+$navbar-dark-hover-color:       rgba($white, 1) !default;
+$navbar-light-hover-color:      rgba($black, .9) !default;
+
+// Alerts
+
+$alert-border-width:            0 !default;
+
+// Progress bars
+
+$progress-height:               .5rem !default;

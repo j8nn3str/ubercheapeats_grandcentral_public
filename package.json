@@ -1,0 +1,35 @@
+{
+  "name": "ubercheapeats_grandcentral",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scraper.js",
+  "type": "module",
+  "scripts": {
+    "start": "npm-run-all --parallel dev:*",
+    "dev:eleventy": "eleventy --serve --config=.eleventy.cjs",
+    "dev:parcel": "parcel watch ./src/_assets/js/*.js  --out-dir ./public/assets",
+    "build": "MY_ENVIRONMENT=production run-s prod:eleventy prod:parcel",
+    "prod:eleventy": "eleventy --config=.eleventy.cjs",
+    "prod:parcel": "parcel build ./src/_assets/js/*.js  --out-dir ./public/assets"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "postcss": "^7.0.39",
+    "sass": "^1.69.5"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "axios": "^1.6.5",
+    "bootstrap": "^5.3.3",
+    "chromedriver": "^134.0.4",
+    "dayjs": "^1.11.13",
+    "fs-extra": "^11.1.1",
+    "jquery": "^3.7.1",
+    "parcel-bundler": "^1.12.5",
+    "npm-run-all": "^4.1.5",
+    "selenium-webdriver": "^4.12.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
