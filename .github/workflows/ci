@@ -1,0 +1,43 @@
+name: CI Workflow
+
+on:
+  schedule:
+    # Run every hour on weekdays from 10am to 2pm
+    - cron: '0 10-14 * * 1-5'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install -y wget unzip
+          wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
+          wget -q https://storage.googleapis.com/chrome-for-testing-public/134.0.6998.165/linux64/chromedriver-linux64.zip
+          unzip chromedriver-linux64.zip -d /usr/local/bin/
+          sudo mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/
+          sudo chmod +x /usr/local/bin/chromedriver
+          google-chrome --version
+          chromedriver --version
+          npm ci --include=dev
+
+      - name: Run scraper and build
+        run: |
+          node src/scraper.js
+          npm run build
+          test -f src/_data/deals.json || (echo "deals.json not found in src/_data!" && exit 1)
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-output
+          path: public/
